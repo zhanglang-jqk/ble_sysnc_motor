@@ -4,12 +4,20 @@
 #define LED_PIN 27
 void setup()
 {
-  // esp_task_wdt_init(10,false);
-  Serial.begin(115200);
   pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
   Serial.println("start running...");
+
   CTRL_Init();
   COMM_BLE_Init();
+
+  for (int i = 0; i < 5; i++)
+  {
+    OPEN_UP_LED(), OPEN_DOWN_LED();
+    vTaskDelay(100);
+    CLOSE_UP_LED(), CLOSE_DOWN_LED();
+    vTaskDelay(100);
+  }
 }
 
 void loop()

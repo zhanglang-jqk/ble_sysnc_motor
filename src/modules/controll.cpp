@@ -198,7 +198,7 @@ void CTRL_M1Upload()
 
     digitalWrite(M1_PWNA, LOW);
     digitalWrite(M1_PWNB, HIGH);
-    Serial.println("m1 upload");
+    // Serial.println("m1 upload");
 }
 void CTRL_M1Download()
 {
@@ -208,7 +208,7 @@ void CTRL_M1Download()
     digitalWrite(M1_PWNA, HIGH);
     digitalWrite(M1_PWNB, LOW);
 
-    Serial.println("m1 download");
+    // Serial.println("m1 download");
 }
 void CTRL_M1Stop()
 {
@@ -218,7 +218,7 @@ void CTRL_M1Stop()
     digitalWrite(M1_PWNA, LOW);
     digitalWrite(M1_PWNB, LOW);
 
-    Serial.println("m1 stop");
+    // Serial.println("m1 stop");
 }
 void CTRL_M2Upload()
 {
@@ -228,7 +228,7 @@ void CTRL_M2Upload()
     digitalWrite(M2_PWNA, LOW);
     digitalWrite(M2_PWNB, HIGH);
 
-    Serial.println("m2 upload");
+    // Serial.println("m2 upload");
 }
 void CTRL_M2Download()
 {
@@ -238,7 +238,7 @@ void CTRL_M2Download()
     digitalWrite(M2_PWNA, HIGH);
     digitalWrite(M2_PWNB, LOW);
 
-    Serial.println("m2 download");
+    // Serial.println("m2 download");
 }
 void CTRL_M2Stop()
 {
@@ -248,7 +248,7 @@ void CTRL_M2Stop()
     digitalWrite(M2_PWNA, LOW);
     digitalWrite(M2_PWNB, LOW);
 
-    Serial.println("m2 stop");
+    // Serial.println("m2 stop");
 }
 
 void m1Topfalling()
@@ -291,7 +291,7 @@ void CTRL_CtrlProcessing()
 {
     if (upload_f) //{} key set upload
     {
-        Serial.println("upload precessing");
+        // Serial.println("upload precessing");
         CLOSE_DOWN_LED(), OPEN_UP_LED();
         // CTRL_M1Upload(), CTRL_M2Upload();
         CTRL_Upload();
@@ -343,7 +343,7 @@ void CTRL_CtrlProcessing()
 
     if (download_f) //{} key set upload
     {
-        Serial.println("download processing");
+        // Serial.println("download processing");
         CLOSE_UP_LED(), OPEN_DOWN_LED();
         // CTRL_M1Download(), CTRL_M2Download();
         CTRL_Download();

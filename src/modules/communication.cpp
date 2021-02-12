@@ -22,7 +22,7 @@
 std::string ctrlStatue = "NONE";
 /* 类型定义 ---------------------------------------------------------------------*/
 
-class MyCallbacks : public BLECharacteristicCallbacks
+class ControllCallbacks : public BLECharacteristicCallbacks
 {
     void onWrite(BLECharacteristic *pCharacteristic)
     {
@@ -30,7 +30,7 @@ class MyCallbacks : public BLECharacteristicCallbacks
 
         if (value.length() > 0)
         {
-            Serial.printf("received CMD:");
+            // Serial.printf("received CMD:");
             if (value == CTRL_CMD_NONE)
             {
                 Serial.println(CTRL_CMD_NONE);
@@ -52,26 +52,19 @@ class MyCallbacks : public BLECharacteristicCallbacks
             }
             ctrlStatue = value;
         }
+    }
+};
 
-        // uint8_t *pCtrl = pCharacteristic->getData();
-        // if (*pCtrl != NULL)
-        // {
-        //   switch (*pCtrl)
-        //   {
-        //   case NONE:
-        //     Serial.println("NONE");
-        //     break;
-        //   case UP:
-        //     Serial.println("UP");
-        //     break;
-        //   case DOWN:
-        //     Serial.println("DOWN");
-        //     break;
-        //   case STOP:
-        //     Serial.println("STOP");
-        //     break;
-        //   }
-        // }
+class InputCallbacks : public BLECharacteristicCallbacks
+{
+    void onWrite(BLECharacteristic *pCharacteristic)
+    {
+        // Serial.println("input characteristic on write");
+    }
+
+    void onRead(BLECharacteristic *pCharacteristic)
+    {
+        // Serial.println("input characteristic on read");
     }
 };
 /* 私有变量 ---------------------------------------------------------------------*/
@@ -92,9 +85,12 @@ void COMM_BLE_Init()
 
     BLEService *pService = pServer->createService(SERVICE_UUID);
 
-    BLECharacteristic *pCharacteristic = pService->createCharacteristic(CHARACTERISTIC_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE);
+    BLECharacteristic *pCtrlCharacteristic = pService->createCharacteristic(CONTROL_CHARACTERISTIC_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE);
+    pCtrlCharacteristic->setCallbacks(new ControllCallbacks());
 
-    pCharacteristic->setCallbacks(new MyCallbacks());
+    BLECharacteristic *pInputCharacteristic = pService->createCharacteristic(INPUT_CHARACTERISTIC_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE);
+    pInputCharacteristic->setCallbacks(new InputCallbacks());
+    pInputCharacteristic->setValue("8.5");
 
     // pCharacteristic->setValue("Hello World");
     pService->start();

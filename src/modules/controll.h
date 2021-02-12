@@ -40,8 +40,8 @@
 #define OPEN_DOWN_LED() digitalWrite(LED_DOWN_PIN, LOW)
 #define CLOSE_DOWN_LED() digitalWrite(LED_DOWN_PIN, HIGH)
 
-#define CTRL_SYNC_WAIT_PLUSE 100 //同步等待脉冲数
-#define BRAKE_DELAY 30 //制动延时
+#define CTRL_SYNC_WAIT_PLUSE 30    //同步等待脉冲数
+#define BRAKE_DELAY 30              //制动延时
 /* 变量声明 --------------------------------------------------------------------*/
 extern u8 upload_f;
 extern u8 download_f;
