@@ -32,5 +32,3 @@ void loop()
     ledToggle_c = millis();
   }
 }
-
-hhl
